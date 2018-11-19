@@ -24,12 +24,12 @@ ui <- fluidPage(
     sidebarPanel(
       h4("Plot Parameters"),
       selectInput("x", "X-axis:",
-                  choices = c("trump16", "clinton16", "romney12", "obama12", "demhouse16", "rephouse16", 
-                              "white_pct", "black_pct", "hispanic_pct", "nonwhite_pct", "foreignborn_pct",
-                              "median_hh_inc", "lesshs_pct","lesscollege_pct"),
-                  selected = "trump16"),
+                  choices = c("county"),
+                  selected = "county"),
       selectInput("y", "Color By:",
-                  c("county"),
+                  c("trump16", "clinton16", "romney12", "obama12", "demhouse16", "rephouse16", 
+                    "white_pct", "black_pct", "hispanic_pct", "nonwhite_pct", "foreignborn_pct",
+                    "median_hh_inc", "lesshs_pct","lesscollege_pct"),
                   selected = "real_rep_adv"),
       hr(),
       helpText("Data from Upshot NYT")

@@ -51,10 +51,8 @@ server <- function(input, output) {
     ##Read in the results data from UPSHOT
     california %>% 
       ggplot(aes_string(x = input$x, y = input$y, fill = input$y)) +
-      geom_bar(position = "dodge") +
-      theme_linedraw(base_size = 13) +
-      ggtitle(paste(input$x, "and", input$y, "Demographics of the Sample")) + 
-      labs(x = input$x, y = "Count")
+      geom_bar(position = "dodge", stat = "identity")
+ 
     
     
   })

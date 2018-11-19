@@ -28,6 +28,10 @@ election_data <- read_csv("election-context-2018.csv")
 
 california <- election_data %>%
   filter(state == "California") %>% 
+  filter(county == "Los Angeles" | county == "San Francisco" | county == "San Benito" |county == "Marin" 
+         |county == "Orange County" |county == "Madera" | county == "Riverside" | county == "San Luis Obispo"
+         |county == "Ventura" | county == "San Diego"
+         ) %>% 
   select(county, trump16, clinton16, romney12, obama12, demhouse16, rephouse16, white_pct, black_pct, hispanic_pct,   nonwhite_pct, foreignborn_pct, median_hh_inc, lesshs_pct, lesscollege_pct) %>% 
   mutate(low_education = lesshs_pct + lesscollege_pct)
 

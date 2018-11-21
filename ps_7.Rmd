@@ -21,37 +21,32 @@ library(janitor)
 
 ```{r loading data, echo = FALSE}
 election_data <- read_csv("election-context-2018.csv")
+
+#Loading the data
 ```
 
 
 ```{r}
-
+# I decided to filter for only California, because I think it is easier to find trends with a smaller sample size. 
+# I also filtred out the most interesting counties in California. They are 'interesting' because they either are highly
+# commercial areas, or have had volatile election results in the last two decades. 
 california <- election_data %>%
   filter(state == "California") %>% 
   filter(county == "Los Angeles" | county == "San Francisco" | county == "San Benito" |county == "Marin" 
          |county == "Orange County" |county == "Madera" | county == "Riverside" | county == "San Luis Obispo"
          |county == "Ventura" | county == "San Diego"
          ) %>% 
+  # San Diego and San Benito are particularly interesting, especially given that San Diego is at the most southern
+  # boarder of california. 
+  
+  # I selected racial categories and income categories to be able to examine how they affected voting Democrat or 
+  # Republican in 2016 vs. 2012. 
+  
   select(county, trump16, clinton16, romney12, obama12, demhouse16, rephouse16, white_pct, black_pct, hispanic_pct,   nonwhite_pct, foreignborn_pct, median_hh_inc, lesshs_pct, lesscollege_pct) %>% 
   mutate(low_education = lesshs_pct + lesscollege_pct)
 
-#renaming the variables so they look nice in my app  
-#   mutate(`Voted Trump 16` = as_factor(trump16),
-#          `Voted Clinton 16` = as_factor(clinton16),
-#          `Voted Obama 12` = as_factor(obama12),
-#          `Voted Dem House 16` = as_factor(demhouse16),
-#          `Voted Rep House 16` = as_factor(rephouse16),
-#          `White Pop. Percent` = as_factor(white_pct), 
-#          `Black Pop. Percent` = as_factor(black_pct),
-#          `Hispanic Pop. Percent` = as_factor(hispanic_pct),
-#          `Non-White Pop. Percent` = as_factor(nonwhite_pct),
-#          `Foreign Born Pop. Percent` = as_factor(foreignborn_pct),
-#          `Median House-hold Income` = as_factor(median_hh_inc),
-#          `Less than Highschool Education` = as_factor(lesshs_pct), 
-#          `Less than College Education` = as_factor(lesscollege_pct)
-#         )
-        
-california %>% write_rds("ps_7.rds")
+
+california %>% write_rds("ps_7/ps_7.rds")
   
 
 ```
